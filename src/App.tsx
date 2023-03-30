@@ -1,26 +1,58 @@
-import React from 'react';
-import logo from './logo.svg';
+import Advanced from './Advanced';
+import Basic from './Basic';
 import './App.css';
+import { useCallback, useState } from 'react';
+import { FlexContainer, IndexContainer } from './styles';
+import { BottomToTop } from './animations';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+  const [curr, setCurr] = useState(localStorage.getItem('curr'))
+
+  const onSetCurr = useCallback((type: string) => {
+    setCurr(type)
+    localStorage.setItem('curr', type)
+  }, [])
+
+  return <>
+
+    {curr === '' ? '' : <div onClick={() => onSetCurr('')} style={{margin: 10}}>⬅返回</div>}
+
+    {
+      (() => {
+        
+        switch (curr) {
+
+          case 'basic':
+            
+            return <Basic />
+          
+          case 'advanced':
+          
+            return <Advanced />
+          
+          default:
+        
+            return <FlexContainer align="center">
+
+              <BottomToTop index={1} duration={1000} delay={600}>
+                <IndexContainer onClick={() => onSetCurr('basic')}>基础</IndexContainer>
+              </BottomToTop>
+
+              <BottomToTop index={2} duration={1000} delay={600}>
+                <IndexContainer onClick={() => onSetCurr('advanced')}>进阶</IndexContainer>
+              </BottomToTop>
+
+              <BottomToTop index={3} duration={1000} delay={600}>
+                <IndexContainer onClick={() => onSetCurr('basic')}>变态</IndexContainer>
+              </BottomToTop>
+              
+            </FlexContainer>
+        }
+      })()
+    }
+  </>
+  
 }
 
 export default App;
