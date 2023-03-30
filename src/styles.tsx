@@ -62,11 +62,12 @@ export const IndexContainer = styled.div`
   width: 200px;
   height: 300px;
   margin: 30px;
+  margin-top: 60px;
   cursor: pointer;
   background: #99ced6;
   color: #fff;
   line-height: 300px;
   text-align: center;
   font-size: 30px;
-
+  border-radius: 15px;
 `
