@@ -101,3 +101,27 @@ export const TopToBottom = styled.div<AnimationProps>`
   animation-fill-mode: forwards;
   animation-delay: ${props => (props.index ?? 0) * (props.delay ?? 150)}ms
 `
+
+const scale = keyframes`
+  0% {
+    transform: scale(0.8);
+  }
+
+  70% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1
+  }
+`
+
+export const Scale = styled.div<AnimationProps>`
+  transform: scale(1);
+  opacity: 0;
+  animation: ${scale} ${props => props.duration ?? 300}ms;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-delay: ${props => (props.index ?? 0) * (props.delay ?? 150)}ms
+`

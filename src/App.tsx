@@ -4,6 +4,7 @@ import './App.css';
 import { useCallback, useState } from 'react';
 import { FlexContainer, IndexContainer } from './styles';
 import { BottomToTop } from './animations';
+import Complicated from './Complicated';
 
 function App() {
 
@@ -30,6 +31,10 @@ function App() {
           case 'advanced':
           
             return <Advanced />
+
+          case 'complicated':
+
+            return <Complicated />
           
           default:
         
@@ -44,7 +49,7 @@ function App() {
               </BottomToTop>
 
               <BottomToTop index={3} duration={1000} delay={600}>
-                <IndexContainer onClick={() => onSetCurr('basic')}>变态</IndexContainer>
+                <IndexContainer onClick={() => onSetCurr('complicated')}>加强</IndexContainer>
               </BottomToTop>
               
             </FlexContainer>
